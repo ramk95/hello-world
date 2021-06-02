@@ -1,12 +1,9 @@
 pipeline {
     agent any
-    environment {
-        PATH = "/opt/apache-maven-3.6.3/bin:$PATH"
-    }
     stages {
-        stage("clone code"){
+        stage("get code"){
             steps{
-               git credentialsId: 'git_credentials', url: 'https://github.com/ravdy/hello-world.git'
+               git 'https://github.com/ramk95/hello-world.git'
             }
         }
         stage("build code"){
@@ -16,8 +13,8 @@ pipeline {
         }
         stage("deploy"){
             steps{
-              sshagent(['deploy_user']) {
-                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@13.229.183.126:/opt/apache-tomcat-8.5.55/webapps"
+              sshagent(['tomcat-user']) {
+                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war tomcat@3.96.211.107:/usr/local/apache-tomcat-9.0.46/webapps"
                  
                 }
             }
