@@ -13,10 +13,7 @@ pipeline {
         }
         stage("deploy"){
             steps{
-              sshagent(['test-key']) {
-                 sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war tomcat@3.96.211.107:/tmp/webapps/"
-                 
-                }
+                 sh "scp -i /var/lib/jenkins/tt.key webapp/target/webapp.war ec2-user@3.96.211.107:/usr/local/apache-tomcat-9.0.46/webapps/app.war"
             }
         }
     }
