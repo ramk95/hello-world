@@ -1,4 +1,4 @@
-<h1> Welcome to Valaxy Technologies </h1>
-<h2> Steup and deploy using jenkins </h2>
+<h1> This is a test App </h1>
+<h2> This is build using Maven and deployed in Tomcat </h2>
 
 
